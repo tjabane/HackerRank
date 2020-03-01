@@ -43,9 +43,23 @@ namespace Solutions
                 return int.MaxValue;
 
             var next = step + 1;
-            Console.WriteLine($"step : {next}, currentLoc: {currentLoc}, currentValue: {path[currentLoc]}");
             return Math.Min(JumpingOnClouds(path, next, currentLoc + 1),
                 JumpingOnClouds(path, next, currentLoc + 2));
+        }
+
+
+        public static long RepeatedString(string sub, long length)
+        {
+            var multiplier = (length / sub.Length);
+            var currentCount = sub.Count(c => c == 'a') * multiplier;
+            var currentLen = multiplier * sub.Length;
+
+            for (var i = 0; i < length - currentLen; i++)
+            {
+                if (sub[i] == 'a')
+                    currentCount++;
+            }
+            return currentCount;
         }
 
 
